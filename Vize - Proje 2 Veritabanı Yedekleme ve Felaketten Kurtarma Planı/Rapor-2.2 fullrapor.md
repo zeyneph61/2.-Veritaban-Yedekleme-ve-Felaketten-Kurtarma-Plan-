@@ -4,12 +4,30 @@ Ağ Tabanlı Paralel Dağıtım Sistemleri dersi için yapılan 2. Veritabanı Y
 
 # BLM 4522 PROJE RAPORU 
 
-2. Veri tabanı Yedekleme ve Felaketten Kurtarma Planı
-
 Zeynep Hacısalihoğlu
 
 22290449
 
+## İçindekiler
+
+- [1. Giriş](#1-giriş)
+  - [1.1 Kullanılan Ortam](#11-kullanılan-ortam)
+  - [1.2 Veri Tabanı Kurulumu](#12-veri-tabanı-kurulumu)
+  - [1.3 Amaç ve Planlama](#13-amaç-ve-planlama)
+- [2. Tam Yedekleme (Full Backup)](#2-tam-yedekleme-full-backup)
+- [3. Fark Yedekleme (Differential Backup)](#3-fark-yedekleme-differential-backup)
+- [4. Transaction Log Yedekleme](#4-transaction-log-yedekleme)
+- [5. Otomatik Yedekleme Zamanlaması (SQL Server Agent)](#5-otomatik-yedekleme-zamanlaması-sql-server-agent)
+- [6. Felaket Senaryosu ve Geri Yükleme](#6-felaket-senaryosu-ve-geri-yükleme)
+- [7. Yedek Doğrulama (RESTORE VERIFYONLY)](#7-yedek-doğrulama-restore-verifyonly)
+- [8. SSMS Arayüzü Üzerinden Doğrulama](#8-ssms-arayüzü-üzerinden-doğrulama)
+  - [8.1 Yedekleme Arayüzü](#81-yedekleme-arayüzü)
+  - [8.2 Job Genel Bilgileri](#82-job-genel-bilgileri)
+  - [8.3 Job Zamanlaması](#83-job-zamanlaması)
+  - [8.4 Job Adımları](#84-job-adımları)
+  - [8.5 Recovery Model Doğrulama](#85-recovery-model-doğrulama)
+  - [8.6 Yedekleme Geçmişi](#86-yedekleme-geçmişi)
+- [9. Sonuç](#9-sonuç)
 
 
 # 1.	Giriş
@@ -302,4 +320,3 @@ Felaket senaryosunda bir tablonun yanlışlıkla silinmesi simüle edilmiş ve f
 
 Son olarak RESTORE VERIFYONLY komutu ile yedek dosyasının bütünlüğü doğrulanmış, tüm işlemler SSMS arayüzü üzerinden görsel olarak da teyit edilmiştir.
 
-Bu proje bir veritabanı yöneticisinin felaket anında panik yapmak yerine önceden planlanmış bir stratejiyle hareket edebilmesinin önemini açıkça ortaya koymaktadır. Düzenli alınan ve test edilen yedekler, veri güvenliğinin temel güvencesidir.
