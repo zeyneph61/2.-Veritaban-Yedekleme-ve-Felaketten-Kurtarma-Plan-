@@ -11,9 +11,9 @@ Zeynep Hacısalihoğlu
 ## İçindekiler
 
 - [1. Giriş](#1-giriş)
-  - [1.1 Kullanılan Ortam](#11-kullanılan-ortam)
-  - [1.2 Veri Tabanı Kurulumu](#12-veri-tabanı-kurulumu)
-  - [1.3 Amaç ve Planlama](#13-amaç-ve-planlama)
+  - [1.1 Amaç ve Planlama](#11-amaç-ve-planlama)
+  - [1.2 Kullanılan Ortam](#12-kullanılan-ortam)
+  - [1.3 Veri Tabanı Kurulumu](#13-veri-tabanı-kurulumu)
 - [2. Tam Yedekleme (Full Backup)](#2-tam-yedekleme-full-backup)
 - [3. Fark Yedekleme (Differential Backup)](#3-fark-yedekleme-differential-backup)
 - [4. Transaction Log Yedekleme](#4-transaction-log-yedekleme)
@@ -28,19 +28,32 @@ Zeynep Hacısalihoğlu
   - [8.5 Recovery Model Doğrulama](#85-recovery-model-doğrulama)
   - [8.6 Yedekleme Geçmişi](#86-yedekleme-geçmişi)
 - [9. Point-in-Time Restore](#9-point-in-time-restore)
-- [10. Sonuç](#1-sonuç)
+- [10. Sonuç](#10-sonuç)
 
 
 
 # 1.	Giriş
 Bu proje Microsoft SQL Server üzerinde Northwind örnek veri tabanı kullanılarak kapsamlı bir yedekleme ve felaketten kurtarma planının tasarlanması ve uygulanmasını konu almaktadır. Proje boyunca tam yedekleme, fark yedekleme ve transaction log yedekleme stratejileri ele alınmış; bu yedeklerin otomatize edilmesi ve felaket senaryolarında veri kurtarma süreçleri uygulamalı olarak gerçekleştirilmiştir.
 
-## 1.1	Kullanılan Ortam
+## 1.1 Amaç ve Planlama
+
+Amaç: Bir felaket anında (sunucu çökmesi, yanlışlıkla silme, veri bozulması) veriyi geri getirebilmek.
+
+1. Full Backup  => Tüm DB'nin şuanki halini kaydetmek
+2. Differential Backup => Full'dan sonraki değişiklikleri yakalamak
+3. Transaction Log Backup => Saatlik/dakikalık değişiklikleri yakalamak
+4. Otomatik ZamanlamaBunları => SQL Agent ile otomatik çalışmasını sağlamak
+5. Test aşaması => DB'yi silmek / veriyi bozmak
+6. Geri Yüklemeye çalışmak
+7. Point-in-Time Restore => Transaction Log kullanarak belirli bir ana geri dönmek
+
+
+## 1.2	Kullanılan Ortam
 
 -  Veritabanı Sistemi: Microsoft SQL Server 2022 Developer Edition, Sürüm 16.0.1000.6 
 -  Yönetim Aracı: SQL Server Management Studio (SSMS) 
 
-## 1.2	Veri Tabanı Kurulumu
+## 1.3	Veri Tabanı Kurulumu
 
 Proje kapsamında kullanılacak örnek veri tabanı olarak Northwind seçilmiştir. Northwind Microsoft tarafından yayımlanmış, bir ticaret şirketinin sipariş, ürün, müşteri ve çalışan verilerini barındıran klasik bir örnek veritabanıdır. Veritabanı SSMS üzerinden başarıyla yüklenmiş ve aşağıdaki sorgu ile doğrulanmıştır:
 
@@ -53,17 +66,7 @@ WHERE name = 'Northwind';
 
 ![Northwind DB Doğrulama](gorseller/gorsel1.png)
 
-## 1.3 Amaç ve Planlama
 
-Amaç: Bir felaket anında (sunucu çökmesi, yanlışlıkla silme, veri bozulması) veriyi geri getirebilmek.
-
-1. Full Backup  => Tüm DB'nin şuanki halini kaydetmek
-2. Differential Backup => Full'dan sonraki değişiklikleri yakalamak
-3. Transaction Log Backup => Saatlik/dakikalık değişiklikleri yakalamak
-4. Otomatik ZamanlamaBunları => SQL Agent ile otomatik çalışmasını sağlamak
-5. Test aşaması => DB'yi silmek / veriyi bozmak
-6. Geri Yüklemeye çalışmak
-7. Point-in-Time Restore => Transaction Log kullanarak belirli bir ana geri dönmek
 
 
 ## 2. Tam Yedekleme (Full Backup)

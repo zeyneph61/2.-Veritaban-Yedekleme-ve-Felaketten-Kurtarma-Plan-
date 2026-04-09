@@ -441,10 +441,11 @@ FROM sys.fn_get_audit_file('C:\NorthwindBackups\*.sqlaudit', DEFAULT, DEFAULT)
 ORDER BY event_time DESC;
 ```
 
-Log çıktısında iki kayıt görülmektedir: `db_readonly` kullanıcısının SELECT girişimi **(SL)** ve audit specification'ın oluşturulması **(AUSC)**. SL kullanıcı aktivitesini, AUSC ise yapılandırma değişikliğini temsil etmektedir.
+Log çıktısında db_readonly kullanıcısının SELECT girişimi **(SL)** ve audit specification'ın oluşturulması **(AUSC)** kayıt altına alınmıştır. Bu sonuç kullanıcı aktivitelerinin başarılı ve başarısız işlemler dahil olmak üzere eksiksiz loglandığını doğrulamaktadır. 
 
 ![LOG3](gorseller/gorsel21.png)
 
+Log çıktısında iki kayıt görülmektedir: db_readonly kullanıcısının SELECT girişimi (SL) ve audit specification'ın oluşturulması (AUSC). SL kullanıcı aktivitesini, AUSC ise yapılandırma değişikliğini temsil etmektedir.
 
 # 6. Güvenlik Duvarı Yönetimi
 
@@ -466,6 +467,8 @@ Aşağıdaki yapılandırma adımları uygulanmıştır:
 - Eylem: Yalnızca belirtilen koşullarda izin ver
 - Profil: Domain ve Private — Public devre dışı
 - Uzak IP: Yalnızca 127.0.0.1 (localhost)
+
+Windows Defender Güvenlik Duvarı üzerinde SQL Server için port tabanlı bir inbound kuralı oluşturulmuştur. Bu kural ile belirli bir port üzerinden gelen bağlantılar kontrol altına alınmıştır.
 
 ![FIREWALL1](gorseller/gorsel22.png)
 
