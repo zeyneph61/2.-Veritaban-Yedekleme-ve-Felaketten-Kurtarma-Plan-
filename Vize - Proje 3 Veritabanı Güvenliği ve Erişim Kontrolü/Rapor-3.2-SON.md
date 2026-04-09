@@ -8,10 +8,34 @@ Zeynep Hacısalihoğlu
 
 ## İçindekiler
 
+1. [Giriş](#1-giriş)
+   - [1.1 Kullanılan Ortam](#11-kullanılan-ortam)
+   - [1.2 Projenin Amacı](#12-projenin-amacı)
+   - [1.3 Proje Planı](#13-proje-planı)
+   - [1.4 Mevcut Durum](#14-mevcut-durum)
+   - [1.5 Authentication Modu](#15-authentication-modu)
+2. [Erişim Yönetimi](#2-erişim-yönetimi)
+   - [2.1 Login Oluşturma](#21-login-oluşturma)
+   - [2.2 Kullanıcı ve Rol Atama](#22-kullanıcı-ve-rol-atama)
+   - [2.3 Yetki Testi - db_readonly](#23-yetki-testi---db_readonly)
+   - [2.4 Yetki Testi — db_dataentry](#24-yetki-testi--db_dataentry)
+   - [2.5 Yetki Testi — db_admin](#25-yetki-testi--db_admin)
+3. [Veri Şifreleme (TDE)](#3-veri-şifreleme-tde---transparent-data-encryption)
+4. [SQL Injection Testleri](#4-sql-injection-testleri)
+   - [4.1 Savunmasız Senaryo (Unsafe)](#41-savunmasız-senaryo-unsafe)
+   - [4.2 Güvenli Senaryo (Safe)](#42-güvenli-senaryo-safe)
+   - [4.3 Kalıcı Güvenlik Önlemleri](#43-kalıcı-güvenlik-önlemleri)
+5. [Audit Logları](#5-audit-logları)
+6. [Güvenlik Duvarı Yönetimi](#6-güvenlik-duvarı-yönetimi)
+   - [6.1 Neden Güvenlik Duvarı?](#61-neden-güvenlik-duvarı)
+   - [6.2 Güvenlik Duvarı Kuralının Oluşturulması](#62-güvenlik-duvarı-kuralının-oluşturulması)
+   - [6.3 Yapılandırmanın Doğrulanması](#63-yapılandırmanın-doğrulanması)
+7. [Sonuç](#7-sonuç)
+
+
 # 1. Giriş
 
 Bu proje Microsoft SQL Server 2022 üzerinde çalışan Northwind veritabanı üzerinde kapsamlı bir güvenlik altyapısının tasarlanması ve uygulanmasını konu almaktadır.
-
 
 
 Proje kapsamında dört temel güvenlik konusu ele alınmıştır: kullanıcı erişim yönetimi, veri şifreleme (TDE), SQL Injection saldırılarına karşı koruma ve audit logları ile kullanıcı aktivitelerinin izlenmesi.
