@@ -1,4 +1,6 @@
-# 3. Veritabanı Güvenliği ve Erişim Kontrolü
+# 3. Veri Tabanı Güvenliği ve Erişim Kontrolü
+
+Ağ Tabanlı Paralel Dağıtım Sistemleri dersi için yapılan Veri Tabanı Güvenliği ve Erişim Kontrolü projesi.
 
 # BLM 4522 PROJE RAPORU
 

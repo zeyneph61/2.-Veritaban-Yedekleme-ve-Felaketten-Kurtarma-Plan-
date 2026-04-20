@@ -1,6 +1,8 @@
-# 2. Veri tabanı Yedekleme ve Felaketten Kurtarma Planı
+# 2. Veri Tabanı Yedekleme ve Felaketten Kurtarma Planı
 
-Ağ Tabanlı Paralel Dağıtım Sistemleri dersi için yapılan 2. Veritabanı Yedekleme ve Felaketten Kurtarma Planı projesi
+Vize 1. Proje
+
+Ağ Tabanlı Paralel Dağıtım Sistemleri dersi için yapılan Veritabanı Yedekleme ve Felaketten Kurtarma Planı projesi.
 
 # BLM 4522 PROJE RAPORU 
 
